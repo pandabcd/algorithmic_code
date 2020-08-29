@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -49,9 +50,33 @@ int main() {
 		freopen("output.txt", "w", stdout);
 	#endif
 
-	std::ios_base::sync_with_stdio(false);
+	std::ios_base::sync_with_stdio(false);	
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t; 
+	while(t--){
+		int n;
+		cin >> n;
+		if(n%2==0){
+			cout << n/2 << " " << n/2 << endl;
+			continue;
+		}
+		int divisor = 1;
+		for(int i=2;i<=sqrt(n);i++){
+			if(n%i==0){
+				divisor = i;
+				break;
+			}
+		}
+		if(divisor==1){
+			cout << 1 << " " << n-1 << endl;
+			continue; 
+		}
+
+		cout << n/divisor << " " << n - n/divisor << endl;
+	}
 	
 	return 0;
 }

@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,35 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+	int t;
+	cin >> t;
+	// cout << t << endl;
+	while(t--){
+		int n;
+		cin >> n;
+		int a[n];
+		int count[200005] = {0};
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+		}
+		sort(a, a+n);
+		int ans = 0;
+		int group_size = 1;
+		int max_inex = -1;
+		for(int i=0;i<n;i++){
+			if(group_size>=a[i]){
+				ans++;
+				group_size = 1;
+				max_inex = -1;
+			}
+			else{
+				group_size++;
+				max_inex = max(max_inex, a[i]);
+			}
+		}
+
+		cout << ans << endl;
+	}
 	
 	return 0;
 }

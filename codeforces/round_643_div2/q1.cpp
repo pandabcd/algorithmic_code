@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -40,6 +41,26 @@ typedef multiset<int> MSETI;
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
 
 
+lli get_sum(lli n){
+	lli minn = 10;
+	lli maxx = -1;
+	lli dig = n%10;
+	// cout << n << " ";
+	if(dig==0){
+		return 0;
+	}
+	while(dig!=0){
+		minn = min(minn, dig);
+		maxx = max(maxx, dig);
+		n/=10;
+		dig = n%10;
+		if(dig==0&&n!=0){
+			return 0;
+		}
+	}
+	// cout << minn << " " << maxx << endl;
+	return minn*maxx;
+}
 
 
 // Use auto
@@ -52,6 +73,26 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		lli n, k;
+		cin >> n >> k;
+		// n -= 13;
+		// lli x = get_sum(n);
+		for(lli i=1;i<k;i++){
+			lli x = get_sum(n);
+			n += x;
+			if(x==0){
+				// cout << "hi" << i ;
+				break;
+			}
+			// cout << n << endl;
+		}
+		cout << n <<endl;
+	}
+
 	
 	return 0;
 }

@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,55 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		int len = s.size();
+		int n = len;
+		int zero_count[len] = {0};
+		int one_count[len] = {0};
+		// int zero_c = 0, one_c = 0;
+
+		int ans = INT_MAX;
+
+		if(s[0]=='0'){
+			zero_count[0]++;
+		}
+		else{
+			one_count[0]++;
+		}
+
+		for(int i=1;i<len;i++){
+			if(s[i]=='0'){
+				zero_count[i] = zero_count[i-1] + 1;
+				one_count[i] = one_count[i-1];
+			}
+			else{
+				one_count[i] = one_count[i-1] + 1;
+				zero_count[i] = zero_count[i-1];
+			}
+			// cout << zero_count[i] << " " << one_count[i] <<endl;
+
+		}
+
+		int xx = zero_count[n-1] ;
+		int yy = one_count[n-1] ;
+		// cout << xx << " " << yy << endl;
+		ans = min(zero_count[n-1], one_count[n-1]);
+		
+
+		for(int i=1;i<len;i++){
+			int zero_end = one_count[i-1] + (zero_count[n-1] - zero_count[i]);
+			int one_end = zero_count[i-1] + (one_count[n-1] - one_count[i]);
+			int temp_ans = min(zero_end, one_end);
+			ans = min(ans, temp_ans);
+		}
+		cout<< ans<<endl;
+	}
+
 	
 	return 0;
 }

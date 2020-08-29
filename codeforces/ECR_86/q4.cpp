@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -53,5 +54,20 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int l = 4723;
+	int r = 6890;
+	int a = 53;
+	int b = 153;
+	int count = 0;
+
+	// cout << 5; 
+
+	for(int i=l;i<=r;i++){
+		if((i%a)%b != (i%b)%a){
+			// cout << i << endl;
+			count ++;
+		}
+	}
+	cout << count;
 	return 0;
 }

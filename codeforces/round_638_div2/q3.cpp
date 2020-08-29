@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define size 100010
+
 
 using namespace std;
 
@@ -53,5 +54,42 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin >> t;
+	while(t--){
+		int n, k;
+		cin>>n>>k;
+		string a;
+		cin>>a;
+		
+		sort(a.begin(), a.end());
+		if(a[0]!=a[k-1]){
+			cout << a[k-1] << endl;
+			continue;
+		}
+
+		set<char> diff_counter;
+		diff_counter.clear();
+
+		for(int i=k;i<n;i++)
+			diff_counter.insert(a[i]);
+
+		if(diff_counter.size()==1){
+			for(int i=(n-1)%k;i<n;i+=k){
+				cout << a[i];
+			}
+			cout << endl;
+			continue;
+		}
+
+		else{
+			cout << a[0];
+			for(int i=k;i<n;i++){
+				cout << a[i];
+			}
+			cout << endl;
+		}
+
+	}
 	return 0;
 }

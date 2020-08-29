@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -41,7 +42,6 @@ typedef multiset<int> MSETI;
 
 
 
-
 // Use auto
 int main() {
 	#ifndef ONLINE_JUDGE
@@ -52,6 +52,11 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	cout << t;
+
 	
 	return 0;
 }

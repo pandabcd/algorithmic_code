@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -53,5 +54,60 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int n,m;
+	cin >> n >> m;
+
+	int a[n+1][m+1], left[n+1][m+1]={}, up[n+1][m+1]={};
+	char x;
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			cin >> x;
+			// white
+			if(x=='.'){
+				a[i][j] = 0;
+			}
+			else{
+				a[i][j] = 1;
+			}
+			if( i==1 || j==1 ){
+				left[i][j] = -1;
+				up[i][j] = -1;
+			}
+		}
+	}
+
+
+	for(int i=1;i<=n;i++){
+		int last_left = -1;
+		for(int j=1;j<=m;j++){
+			left[i][j] = last_left;
+			if(a[i][j] == 1){
+				last_left = j;
+			}
+			cout << left[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	cout << endl;
+
+	for(int j=1;j<=m;j++){
+		int last_up = -1;
+		for(int i=1;i<=n;i++){
+			up[i][j] = last_up;
+			if(a[i][j] == 1){
+				last_up = i;
+			}
+		}
+	}	
+
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			cout << up[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+
 	return 0;
 }

@@ -10,7 +10,7 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+
 
 using namespace std;
 
@@ -52,6 +52,33 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		lli a[n], b[n];
+		lli min_b = INT_MAX, min_a = INT_MAX;
+		
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+			min_a = min(min_a, a[i]);
+		}
+		for(int i=0;i<n;i++){
+			cin >> b[i];
+			min_b = min(min_b, b[i]);
+		}
+
+		lli num_a = 0, num_b = 0;
+		lli ans = 0;
+
+		for(int i=0;i<n;i++){
+			ans += max(a[i]-min_a, b[i]-min_b);
+		}
+
+		cout << ans << endl;
+	}
 	
 	return 0;
 }

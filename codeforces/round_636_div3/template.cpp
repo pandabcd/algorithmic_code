@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 

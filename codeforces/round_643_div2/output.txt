@@ -1,0 +1,13 @@
+Doing for i= 2
+2
+Find number of with value >= 1which is2
+Doing for i= 3
+1
+Find number of with value >= 2which is1
+Doing for i= 4
+0
+Find number of with value >= 3which is0
+Doing for i= 5
+-1
+Find number of with value >= 4which is-1
+0

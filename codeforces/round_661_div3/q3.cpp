@@ -10,7 +10,7 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+
 
 using namespace std;
 
@@ -52,6 +52,46 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		int a[n];
+		// SETI st;
+		MPII st;
+
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+			st[a[i]] ++;
+		}
+		int ans = 0;
+		int best_s = 0;
+		for(int j=2;j<=100;j++){
+			int count = 0;
+			MPII new_st = st;
+			for(int i=0;i<n;i++){
+				if(st[a[i]] > 0 && st[j-a[i]] > 0){
+					st[a[i]]--;
+					if(st[j-a[i]] > 0){
+						st[j-a[i]]--;
+						count++;
+					}
+					else{
+						st[a[i]]++;
+						continue;
+					}
+				}
+			}
+			st = new_st;
+			ans = max(ans, count);
+			// if( count  > ans)
+			// 	best_s = j;
+		}
+		st.clear();
+		cout << ans  << endl;
+	}
 	
 	return 0;
 }

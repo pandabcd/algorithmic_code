@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,30 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	lli a,b,c,d;
+	cin >> a >> b >> c >> d;
+	lli ans = 0;
+	for(lli i = c; i<=d;i++){
+		// lli start = (i-c+1);
+		// lli num = (b-start+1);
+		// if(num<0){
+		// 	continue;
+		// }
+		// cout << i << " " << start << " " << (num*(num+1))/2 << endl;
+		// ans += (num*(num+1))/2;
+		cout << "Doing for i= " <<i <<endl;
+		lli num = b- (i-c+1)+1;
+		lli z = c-b;
+		cout << num <<endl;
+		for(int j = b;j<=c;j++){
+			cout << "Find number of with value >= " << i-j+1 << "which is" << b- (i-j+1)+1 << endl;
+		}
+		if(num>0){
+			ans += num*z  - z*(z+1)/2;
+		}
+	}
+	cout << ans << endl;
 	
 	return 0;
 }

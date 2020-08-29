@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define int long long int
+#define size 100010
 
 using namespace std;
 
@@ -39,6 +40,19 @@ typedef multiset<int> MSETI;
 // int sp[maxx]={0};     // gives smallest prime factor of the number
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
 
+
+
+// Check size variable 
+void dfs(int s)
+{
+	visited[s]=true;
+	for(LL i=0;i<adj[s].size();i++)
+	{
+		LL v=adj[s][i];
+		if(!visited[v])
+			dfs(v);
+	}
+}
 
 
 

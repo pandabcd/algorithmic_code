@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 
@@ -52,6 +51,52 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	
+	int n,m;
+	cin>>n>>m;
+	MPSS chef_country;
+	MPSI country_counter;
+	MPSI chef_counter;
+
+	string x,y;
+	for(int i=0;i<n;i++){
+		cin>>x>>y;
+		chef_country[x] = y;
+	}
+
+	for(int i=0;i<m;i++){
+		cin>>x;
+		chef_counter[x]++;
+		country_counter[chef_country[x]]++;
+	}
+
+	SETS a;
+	int max_country = 0;
+	for(auto ii : country_counter){
+		max_country = max(max_country, ii.second);
+	}
+
+	for(auto ii : country_counter){
+		if(ii.second == max_country){
+			a.insert(ii.first);
+		}
+	}
+
+	cout<<*a.begin()<<endl;
+
+	a.clear();
+
+	int max_chef = 0;
+	for(auto ii : chef_counter){
+		max_chef = max(max_chef, ii.second);
+	}
+
+	for(auto ii : chef_counter){
+		if(ii.second == max_chef){
+			a.insert(ii.first);
+		}
+	}
+
+	cout<<*a.begin()<<endl;
+
 	return 0;
 }

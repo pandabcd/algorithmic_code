@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 
@@ -53,5 +52,29 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		if((n/2)%2==1){
+			cout<<"NO"<<endl;
+			continue;
+		}
+
+		cout<<"YES"<<endl;
+
+		lli ss1 = 0, ss2 = 0;
+		for(int i=1;i<n/2+1;i++){
+			cout<<2*i<<" ";
+			ss1 +=2*i;
+		}
+
+		for(int i=1;i<n/2;i++){
+			cout<<2*i-1<<" ";
+			ss2 += 2*i-1;
+		}
+		cout<<ss1 - ss2 <<endl;
+	}
 	return 0;
 }

@@ -11,6 +11,7 @@
 #define endl "\n"
 #define lli long long int
 #define len 100010
+#define PI 3.1415926535897932384626433832795;
 
 using namespace std;
 
@@ -53,5 +54,25 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		int count_0 = 0, count_1 = 0;
+		for(int i=0;i<s.size();i++){
+			if(s[i]=='0')
+				count_0++;
+			else
+				count_1++;
+		}
+
+		int x = min(count_0, count_1);
+
+		if(x%2==1)
+			cout << "DA" << endl;
+		else
+			cout << "NET" << endl;
+	}
 	return 0;
 }

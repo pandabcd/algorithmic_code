@@ -10,7 +10,9 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define int long long int
+#define size 100010
+
 
 using namespace std;
 
@@ -43,7 +45,7 @@ typedef multiset<int> MSETI;
 
 
 // Use auto
-int main() {
+int main(int argc, char* argv[]) {
 	#ifndef ONLINE_JUDGE
 		freopen("input.txt", "r", stdin);
 		freopen("output.txt", "w", stdout);
@@ -52,6 +54,58 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin>>t;
+	while(t--){
+		int n,k;
+		cin>>n>>k;
+		int a[n];
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+
+		int peaks[n] = {0};
+		bool is_peak[n] = {0};
+
+		for(int i=1;i<n-1;i++){
+			peaks[i] = peaks[i-1];
+			if(a[i]>a[i-1] && a[i]>a[i+1]){
+				peaks[i]++; 
+				is_peak[i] = 1;
+			}
+		}
+
+		peaks[n-1] = peaks[n-2];
+
+		// for(int i=0;i<n;i++){
+		// 	cout << peaks[i] << " ";
+		// }
+		// cout<<endl;
+
+
+		int max_parts = 0, left_border = 0;;
+		for(int i=0;i<n;i++){
+			if(i+k-1>=n)
+				break;
+			int subtractor = 0;
+			if(is_peak[i])
+				subtractor++;
+			if(is_peak[i+k-1])
+				subtractor++;
+			// cout << peaks[i+k-1] - peaks[i] -subtractor <<endl;
+			if(peaks[i+k-1] - peaks[i] -subtractor > max_parts){
+				max_parts = peaks[i+k-1] - peaks[i] -subtractor;
+				left_border = i;
+			}
+		}
+
+		// if(max_parts==1){
+		// 	cout<<1<<" " << 1 <<endl;
+		// }
+		cout<< max_parts+1 << " " << left_border+1 << endl;
+
+	}
 	
 	return 0;
 }

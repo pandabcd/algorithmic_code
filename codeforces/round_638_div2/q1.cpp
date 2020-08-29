@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,24 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin>>t;
+	while(t--){
+		lli n;
+		lli set1 = 0, set2 =0;
+		cin>>n;
+		for(int i=1;i<=n/2-1;i++){
+			set1 += 1<<i;
+		}
+		set1 += (1<<n);
+		for(int i=n/2;i<=n-1;i++){
+			set2 += 1<<i;
+		}
+
+		// cout << set1 << " " <<set2 <<endl;
+		cout << set1 - set2 << endl;
+	}
 	
 	return 0;
 }

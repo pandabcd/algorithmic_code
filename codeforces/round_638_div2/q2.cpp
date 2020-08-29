@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,52 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n,k;
+		cin >> n >> k;
+		int a[n];
+		SETI diff_counter;
+		diff_counter.clear();
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+			diff_counter.insert(a[i]);
+		}
+
+		if(diff_counter.size()>k){
+			cout << -1 <<endl;
+			continue;
+		}
+
+		int count = 10000/k;
+
+		int ans[k];
+		
+		SETI::iterator ii = diff_counter.begin();
+
+		for(int i=0;i<k;i++){
+			if(ii!=diff_counter.end()){
+				ans[i] = *ii;
+				ii++;
+			}
+			else{
+				ans[i] = ans[i-1];
+			}
+		}
+
+		cout << count*k <<endl;
+		for(int i=0;i<count;i++){
+			for(int j=0;j<k;j++){
+				cout << ans[j] << " " ;
+			}
+		}
+
+		cout << endl;
+			
+	}
 	
 	return 0;
+		
 }

@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -53,5 +54,20 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin >> t;
+	while(t--){
+		int n,x;
+		cin >> n >> x;
+		int a[n];
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+		}
+
+		float aa = (float)log(a[0]/2) / (float)log(x);
+		cout << aa << endl;
+		cout <<  n-1 + ceil(aa) << endl;
+	}
+
 	return 0;
 }

@@ -1,0 +1,10 @@
+Getting top two of 0
+Getting top two of 1
+4
+1
+10
+Getting top two of 0
+Getting top two of 1
+4
+1
+16

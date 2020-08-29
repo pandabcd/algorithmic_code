@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 
@@ -53,5 +52,34 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+
+		bool seg_sign = a[0]>0;
+		// int min_seg = INT_MAX;
+		int max_seg = INT_MIN;
+		lli ans = 0;
+
+		for(int i=0;i<n;i++){
+			bool this_sign = a[i]>0;
+			if(this_sign==seg_sign){
+				max_seg = max(max_seg, a[i]);
+			}
+			else{
+				ans += max_seg;
+				max_seg = a[i];
+				seg_sign = this_sign;
+				// cout<<ans<<endl;
+			}
+		}
+		cout<<ans+max_seg<<endl;
+	}
 	return 0;
 }

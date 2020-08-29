@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,63 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		int a[n], minn[n], posn[n] = {0};
+		minn[0] = 10000000;
+		bool ans = 1;
+		set<int> elements;
+
+		for(int i=0;i<n;i++){
+			cin >> a[i];
+			posn[a[i]] = i;
+			elements.insert(a[i]);
+		}
+		minn[0] = a[0];
+		for(int i=1;i<n;i++){
+			minn[i] = min(minn[i-1], a[i]);
+		}
+
+		int last_pos = n;
+		int iterations = 0;
+		while(elements.size()>1){
+			// iterations++;
+			// if(iterations>5)
+			// 	break;
+			// for(auto it = elements.begin(); it!=elements.end();it++)
+			// 	cout << *it << " " ;
+			// cout << endl;
+			// cout << "LAST pos: " << last_pos << endl;
+
+			int min_ele = *elements.begin();
+			
+			int pos = posn[min_ele];
+			// cout << "Deleting from: " << pos << " to " << last_pos-2 << endl;
+			if(pos > last_pos-2){
+				ans = 0;
+				break;
+			}
+			for(int i=pos;i<last_pos-1;i++){
+				elements.erase(a[i]);
+			}
+			a[pos] = a[last_pos-1];
+			last_pos = pos+1;
+
+		}
+		
+
+
+
+		if(ans)
+			cout << "YES" << endl;
+		else 
+			cout << "NO" <<endl;
+
+	}
 	
 	return 0;
 }

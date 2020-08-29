@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+#define PI 3.1415926535897932384626433832795
 
 using namespace std;
 
@@ -41,7 +42,6 @@ typedef multiset<int> MSETI;
 
 
 
-
 // Use auto
 int main() {
 	#ifndef ONLINE_JUDGE
@@ -52,6 +52,23 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		double n;
+		cin >> n;
+
+		double angle = 180/(2*n);
+	    angle = (angle*PI)/180.0;
+
+
+		double radius = (double)1/ (2*(sin(angle)));
+
+		double ans = sqrt(radius*radius - 0.5*0.5);
+		cout << setprecision(20) << ans*2 << endl;
+	}
+
 	
 	return 0;
 }

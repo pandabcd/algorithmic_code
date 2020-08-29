@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -39,7 +40,14 @@ typedef multiset<int> MSETI;
 // int sp[maxx]={0};     // gives smallest prime factor of the number
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
 
-
+int get_score(int a){
+	int ans = 0;
+	while(a>0){
+		ans += a%10;
+		a/=10;
+	}
+	return ans;
+}
 
 
 // Use auto
@@ -52,6 +60,55 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int k;
+		cin >> k;
+		string board[8][8];
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				board[i][j] = 'X';
+			}
+		}
+
+		board[0][0] = 'O';
+		bool direction = 1;
+
+		int cell_i = 0, cell_j = 1;
+		for(int i=0;i<k-1;i++){
+			if(direction){
+				board[cell_i][cell_j] = '.';
+				cell_j ++ ;
+
+				if(cell_j==8){
+					direction = !direction;
+					cell_i++;
+					cell_j--;
+				}
+			}
+
+			else{
+				board[cell_i][cell_j] = '.';
+				cell_j--;
+				if(cell_j==-1){
+					direction = !direction;
+					cell_i++;
+					cell_j++;
+				}
+			}
+		}
+
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				cout << board[i][j];
+			}
+			cout << endl;
+		}
+		cout<< endl;
+
+	}
 	
 	return 0;
 }

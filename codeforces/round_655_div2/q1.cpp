@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+
+
 
 using namespace std;
 
@@ -52,6 +53,21 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		// cout << n << endl;
+		int i;
+		for(i=1;i<n;i+=2){
+			cout << i << " " << i << " ";
+		}
+		if(n%2==1)
+			cout << i ;
+		cout << endl;
+	}
 	
 	return 0;
 }

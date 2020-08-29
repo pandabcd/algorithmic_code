@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 
@@ -29,7 +28,6 @@ typedef set<int> SETI;
 typedef set<string> SETS;
 typedef multiset<int> MSETI;
 
-
 // ll ncr(ll n,ll r,ll m){int ans=1;for (int i = 0; i < r; i++){ans=ans*(n-i)%m*inv[i+1]%m;}return ans;}
 
 // ll inv[maxx];   // returns the modular inverse of number
@@ -38,8 +36,6 @@ typedef multiset<int> MSETI;
 // bool sv[maxx]={0};    // returns 0 if a num is prime
 // int sp[maxx]={0};     // gives smallest prime factor of the number
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
-
-
 
 
 // Use auto
@@ -53,5 +49,47 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin>>t;
+	while(t--){
+        int n;
+		int  k;
+		cin>>n>>k;
+		int a[n];
+        int prefix[2*k+2] = {0};
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+
+	
+		for(int i=0;i<n/2;i++){
+			int sum = a[i] + a[n-i-1];
+			int min_ele = min(a[i], a[n-i-1])+1;
+            int max_ele = max(a[i], a[n-i-1])+k;
+
+            prefix[min_ele]++;
+            prefix[max_ele+1]--;
+		}
+     
+
+        for(int i=1;i<2*k+2;i++){
+            prefix[i] += prefix[i-1];
+        }
+
+        for(int i=0;i<n/2;i++){
+            int sum = a[i] + a[n-i-1];
+            
+            prefix[sum] += 1;
+        }
+
+        int ans = INT_MAX;
+		
+        for(int i=0;i<=2*k;i++){
+            ans = min(ans, n-prefix[i]);
+        }
+
+		cout<<ans<<endl;
+		
+	}
 	return 0;
 }

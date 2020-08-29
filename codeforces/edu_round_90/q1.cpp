@@ -53,5 +53,25 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin >> t;
+	while(t--){
+
+		lli a,b,c;
+		cin >> a >> b >> c;
+		if(a<c){
+			cout << 1 << " ";
+		}
+		else{
+			cout << -1 << " ";
+		}
+		if(a*b > c){
+			cout << b << endl;
+		}
+		else{
+			cout << -1 << endl;
+		}
+	}
+
 	return 0;
 }

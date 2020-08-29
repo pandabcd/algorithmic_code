@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -39,7 +40,14 @@ typedef multiset<int> MSETI;
 // int sp[maxx]={0};     // gives smallest prime factor of the number
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
 
-
+int get_score(int a){
+	int ans = 0;
+	while(a>0){
+		ans += a%10;
+		a/=10;
+	}
+	return ans;
+}
 
 
 // Use auto
@@ -52,6 +60,37 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		int a[n], b[n];
+		int score_a = 0, score_b = 0;
+		for(int i=0;i<n;i++){
+			cin >> a[i] >> b[i];
+			int sc_a = get_score(a[i]);
+			int sc_b = get_score(b[i]);
+			if(sc_a >= sc_b)
+				score_a++;
+			if (sc_b >= sc_a)
+				score_b++;
+		}
+
+		if(score_a > score_b){
+			cout << 0 << " " << score_a << endl;;
+		}
+		if(score_b > score_a){
+			cout << 1 << " " << score_b << endl;
+		}
+
+		if(score_a == score_b){
+			cout << 2 << " " << score_a << endl;
+		}
+		
+
+	}
 	
 	return 0;
 }

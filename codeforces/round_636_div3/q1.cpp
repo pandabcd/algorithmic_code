@@ -10,7 +10,6 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
 
 using namespace std;
 
@@ -48,10 +47,24 @@ int main() {
 		freopen("input.txt", "r", stdin);
 		freopen("output.txt", "w", stdout);
 	#endif
-
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	lli t;
+	cin>>t;
+	// cout<<t;
+	while(t--){
+		lli n;
+		cin>>n;
+		lli x = 2;
+		while(n%((1<<x)-1)!=0){
+			x++;
+			// break;
+		}
+		cout<< n/((1<<x)-1)<<endl;
+	}
+	
+
 	return 0;
 }

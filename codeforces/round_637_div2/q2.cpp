@@ -10,7 +10,9 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+// #define int long long int
+#define size 100010
+
 
 using namespace std;
 
@@ -39,11 +41,11 @@ typedef multiset<int> MSETI;
 // int sp[maxx]={0};     // gives smallest prime factor of the number
 // void Sieve() {for(int i= 2; i< maxx; i+= 2) sv[i]=1,sp[i] = 2;sv[2]=0;for(ll i = 3; i < maxx; i += 2){if (!sv[i]){sp[i] = i;for (ll j = i; (j*i) < maxx; j += 2){if (!sv[j*i])sv[j*i] = true, sp[j*i] = i;}}}}
 
-
-
+// A utility function to find set of an element i 
+// (uses path compression technique) 
 
 // Use auto
-int main() {
+int main(int argc, char* argv[]) {
 	#ifndef ONLINE_JUDGE
 		freopen("input.txt", "r", stdin);
 		freopen("output.txt", "w", stdout);
@@ -52,6 +54,51 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[n+1], pos[n+1]={0};
+		for(int i=1;i<=n;i++){
+			cin>>a[i];
+			pos[a[i]] = i;
+		}
+
+		int end = n+1;
+		int next_ind = pos[1]+1;
+		int start = pos[1];
+		int flag = 0;
+
+		// if(pos[1]==n){
+
+		// }
+
+		for(int i=2;i<n;i++){
+		
+			if(next_ind==end){
+				end = start-1;
+				next_ind = pos[i+1];
+				start = pos[i+1];
+				continue;
+			}
+
+			if(pos[i]==next_ind){
+				next_ind++;
+				continue;
+			}
+			else{
+				cout <<"No" << endl;;
+				flag = 1;
+				break;
+			}
+		}
+
+		if(not flag){
+			cout << "Yes" << endl;
+		}
+	}
 	
 	return 0;
 }

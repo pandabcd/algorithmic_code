@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,68 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n,k;
+		cin >> n >> k;
+		int magicSquare[n][n] ;
+		memset(magicSquare, 0, sizeof(magicSquare));
+
+		// int major = 0;
+		// int minor = n;
+		int x = 0, y = 0;
+		for(int i=0;i<k;i++){
+			// cout << "Setting: " << x << " " << y << endl;
+			magicSquare[x][y] = 1;
+			x++; y++;
+			if(x==n && y==n){
+				x = 0;
+				y = 1;
+				continue;
+			}
+			if(y==n){
+				y=0;
+			} 
+			if(x==n){
+				x = 0;
+				y++;
+			}
+		}
+
 	
+		int min_row_sum = 1e9;
+		int max_row_sum = 0;
+		for(int i=0;i<n;i++){
+			int row_sum = 0;
+			for(int j=0;j<n;j++){
+				row_sum += magicSquare[i][j];
+			}
+			min_row_sum = min(min_row_sum, row_sum);
+			max_row_sum = max(max_row_sum, row_sum);
+		}
+
+
+		int min_col_sum = 1e9;
+		int max_col_sum = 0;
+		
+		for(int j=0;j<n;j++){
+			int col_sum = 0;
+			for(int i=0;i<n;i++){
+				col_sum += magicSquare[i][j];
+			}
+			min_col_sum = min(min_col_sum, col_sum);
+			max_col_sum = max(max_col_sum, col_sum);
+		}
+
+		cout << (max_col_sum - min_col_sum)*(max_col_sum - min_col_sum) + (max_row_sum - min_row_sum)*(max_row_sum - min_row_sum) << endl;
+		for(int i=0;i<n;i++){
+			for(int j=0;j<n;j++){
+				cout << magicSquare[i][j] ;
+			}
+			cout << endl;
+		}
+	}
 	return 0;
 }

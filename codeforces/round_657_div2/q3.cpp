@@ -10,7 +10,7 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+
 
 using namespace std;
 
@@ -52,6 +52,70 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		lli n,m;
+		cin >> n >> m;
+		// multimap<int, int, greater <int>> top;
+		multimap<int, int, greater <int>> topp;
+		multimap<int, int, greater <int>> top_n_next;
+		// set<int, greater <int>> next;
+		lli next_element = 0;
+
+		lli a[m], b[m];
+		for(int i=0;i<m;i++){
+			cin >> a[i] >> b[i];
+			top_n_next.insert(make_pair(a[i] + b[i], i));
+			// topp.insert(make_pair(a[i], i));
+		}
+		cin.ignore();
+		lli ans = 0;
+		// lli ans = top.begin()->first;
+		// int index = top.begin()->second;
+		// next.insert(b[index]);
+		// next_element = b[index];
+		// top.erase(top.begin());
+		// n--;
+
+
+
+
+		for(int i=0;i<m;i++){
+			// cout << "Hi";
+			if(top_n_next.begin() == top_n_next.end()){
+				ans += next_element*n;
+				break;
+			}
+
+			lli top_element = top_n_next.begin()->first;
+			int index = top_n_next.begin()->second;
+			// cout << "zz" << top_element;
+			if(next_element >= top_element){
+				ans += n*next_element;
+				break;
+			}
+			// cout << "Hello";
+			if(n==1){
+				ans += max(next_element, top_element - b[index]);
+				break;
+			}
+			else{
+				ans += top_n_next.begin()->first;
+				next_element = max(next_element, b[index]);
+				top_n_next.erase(top_n_next.begin());
+				n-=2;
+				cout << "Getting top two of " << i << endl;
+			}
+		}
+
+		cout << top_n_next.begin()->first << endl;
+		cout << (top_n_next.end())->first << endl;
+		cout << ans << endl;
+
+		top_n_next.clear();
+	}
 	
 	return 0;
 }

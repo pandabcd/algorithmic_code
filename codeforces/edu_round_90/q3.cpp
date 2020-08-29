@@ -52,6 +52,42 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		
+		lli ans = 0;
+		// int prev_ind = 0;
+
+		for (int init=0;init<1000010;init++){
+			int cur = init;
+			bool ok = 1;
+			// ans += prev_ind;
+			for(int i=0;i<s.size();i++){
+				ans ++;
+				if(s[i]=='+')
+					cur++;
+				else
+					cur--;
+
+				// cout << i << " aba " << cur << endl;
+				if(cur<0){
+					ok = 0;
+					// prev_ind = i+1;
+					break;
+				}
+			}
+			// cout << prev_ind << " " << ans << endl;
+			if(ok)
+				break;
+		}
+
+		cout << ans << endl;
+
+	}
 	
 	return 0;
 }

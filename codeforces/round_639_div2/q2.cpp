@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,38 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+	int t;
+	cin >> t; 
+	lli num = 100000;
+	// lli a[num] = {0};
+	vector<lli> a;
+	for(lli i=1;i<num;i++){
+		a.push_back( i*(i+1) + (i*(i-1))/2 );
+		// cout << a[i-1] << " " ;
+		if(a[i-1] > 1000000000){
+			break;
+		}
+	}
+
+	while(t--){
+		int n;
+		cin >> n;
+		int ans = 0;
+		while(n>1){
+			// cout << n << endl;
+			auto upper = upper_bound(a.begin(), a.end(), n);
+			auto ind = upper - a.begin() - 1;
+			if(a[ind]==n){
+				ans ++;
+				break;
+			}
+			else{
+				ans ++;
+				n -= a[ind];
+			}
+		}
+		cout << ans << endl;
+	}
 	
 	return 0;
 }

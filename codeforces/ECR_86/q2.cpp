@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -53,5 +54,38 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
+	int t;
+	cin>>t;
+	while(t--){
+		string s;
+		cin>>s;
+		int count_1 = 0;
+		int start = 0;
+		for(int i=0;i<s.length();i++){
+			if(s[i]=='1')
+				count_1++;
+		}
+		if(count_1==0 || count_1==s.length()){
+			cout << s << endl;
+			continue;
+		}
+
+		if(s[0]=='1'){
+			start = 1;
+		}
+		// string str1 = '10', str0 = '01';
+		if(start){
+			for(int i=0;i<s.length();i++){
+				cout << "10" ;
+			}
+			cout << endl;
+		}
+		else{
+			for(int i=0;i<s.length();i++){
+				cout << "01" ;
+			}
+			cout << endl;	
+		}
+	}
 	return 0;
 }

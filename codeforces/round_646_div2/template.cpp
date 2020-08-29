@@ -10,7 +10,8 @@
 #define MOD 1000000007
 #define endl "\n"
 #define lli long long int
-#define len 100010
+#define size 100010
+
 
 using namespace std;
 
@@ -52,6 +53,73 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		int n,x;
+
+		cin >> n >> x;
+		int a[n];
+		int odd = 0, even = 0;
+		for(int i=0;i<n;i++){
+			cin >> a[i] ;
+			if(a[i]%2==1){
+				odd++;
+			}
+			else{
+				even++;
+			}
+		}
+
+		if(odd ==0){
+			cout << "No" << endl;
+			continue;
+		}
+
+		if(even==0 && x%2==0){
+			cout << "No" << endl;
+			continue;
+		}
+
+
+		if(odd%2!=1){
+			odd--;
+		}
+
+
+		if(x%2==1){
+			
+			if(even+odd>=x ){
+				cout << "Yes" << endl;
+			}
+			else{
+				cout << "No" << endl;
+			}
+		}
+
+		else{
+			if(even%2!=1){
+				even--;
+			}
+
+			if(even+odd>=x ){
+				cout << "Yes" << endl;
+			}
+			else{
+				cout << "No" << endl;
+			}
+		
+		}
+
+		// if(odd%2!=1){
+		// 	odd--;
+		// }
+
+		
+
+	}
+
 	
 	return 0;
 }

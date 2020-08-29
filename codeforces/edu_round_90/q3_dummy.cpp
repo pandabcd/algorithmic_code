@@ -11,6 +11,7 @@
 #define endl "\n"
 #define lli long long int
 #define len 100010
+#define PI 3.1415926535897932384626433832795;
 
 using namespace std;
 
@@ -52,6 +53,42 @@ int main() {
 	std::ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		
+		lli ans = 0;
+		lli prev_ind = 0;
+
+		for (int init=0;init<1000010;init++){
+			lli cur = 0;
+			bool ok = 1;
+			ans += prev_ind;
+			for(int i=prev_ind;i<s.size();i++){
+				ans ++;
+				if(s[i]=='+')
+					cur++;
+				else
+					cur--;
+
+				// cout << i << " aba " << cur << endl;
+				if(cur<0){
+					ok = 0;
+					prev_ind = i+1;
+					break;
+				}
+			}
+			// cout << prev_ind << " " << ans << endl;
+			if(ok)
+				break;
+		}
+
+		cout << ans << endl;
+
+	}
 	
 	return 0;
 }
